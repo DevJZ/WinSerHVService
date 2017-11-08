@@ -1,8 +1,10 @@
 node('docker') 
 {
-    docker.image('dcdevjbz/msbuild15:latest').inside()
+    docker.image('dcdevjbz/msbuild15:latest').inside("-v e:/workspace:c:/workspace")
     {
-        dir
-        exit        
+        stage('build')
+        {
+            msbuild c:\workspace\Projects\SharpSSH\SharpSSH.sln /p:Configuration=Release 
+        }
     }
 }
