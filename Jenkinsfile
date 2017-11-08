@@ -4,7 +4,7 @@ node('docker')
     {
         stage('build')
         {
-            msbuild --version
+            msbuild;
         }
     }
 }
