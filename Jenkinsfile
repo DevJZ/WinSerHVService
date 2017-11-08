@@ -4,7 +4,7 @@ node('docker')
     {
         stage('build')
         {
-            msbuild c:\workspace\Projects\SharpSSH\SharpSSH.sln /p:Configuration=Release 
+            msbuild --version
         }
     }
 }
