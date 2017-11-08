@@ -3,12 +3,11 @@ pipeline {
         docker { image 'dcdevjbz/msbuild15:latest' }
     }
     stages {
-        stage('Test') 
-        {
-            step
+        stage('Test') {
+            steps 
             {
-                dir
-            }    
+                cmd dir
+            }
         }
     }
 }
