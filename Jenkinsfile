@@ -6,7 +6,7 @@ pipeline {
         stage('Test') {
             steps 
             {
-                msbuild 
+                docker run --rm -t dcdevjbz/msbuild15:latest
             }
         }
     }
