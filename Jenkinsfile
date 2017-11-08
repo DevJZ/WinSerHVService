@@ -1,10 +1,13 @@
-node('docker') 
-{
-    docker.image('dcdevjbz/msbuild15:latest').inside("-v e:/workspace:c:/workspace")
-    {
-        stage('build')
-        {
-            msbuild;
+pipeline {
+    agent {
+        docker { image 'dcdevjbz/msbuild15:latest' }
+    }
+    stages {
+        stage('Test') {
+            steps 
+            {
+                msbuild 
+            }
         }
     }
 }
