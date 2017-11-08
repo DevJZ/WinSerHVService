@@ -1,8 +1,12 @@
-node {
-    /* Requires the Docker Pipeline plugin to be installed */
-    docker.image('node:7-alpine').inside {
+pipeline {
+    agent {
+        docker { image 'dcdevjbz/msbuild15:latest' }
+    }
+    stages {
         stage('Test') {
-            sh 'node --version'
+            steps {
+                sh 'node --version'
+            }
         }
     }
 }
