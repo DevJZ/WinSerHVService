@@ -10,6 +10,7 @@ pipeline
             {
                 node
                 {
+                    label 'my-label'
                     customworkspace 'e:\tempworkspace'
                 }
             }
