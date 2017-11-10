@@ -8,7 +8,10 @@ pipeline
         {
             steps 
             {
-                git url:'https://github.com/jbogard/SharpSSH.git'
+                node
+                {
+                    git url:'https://github.com/jbogard/SharpSSH.git'
+                }
                 script
                 {
                     node
