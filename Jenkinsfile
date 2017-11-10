@@ -1,10 +1,13 @@
-pipeline {
-    stages {
+pipeline 
+{
+    agint any
+    stages 
+    {
         stage('Test') 
         {
-            steps 
-            {
-                checkout SCM  
+            node
+            {                
+                checkout scm
             }
         }
     }
