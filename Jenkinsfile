@@ -5,10 +5,9 @@ pipeline
     {
         stage('Say Hello') 
         {
-            powershell
+            steps 
             {
-                 
-                {docker run --rm -d -t msbuild15testplatform}
+                powershell(returnStdout: true, script: 'echo "Hello"')
             }
         }
     }
