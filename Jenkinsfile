@@ -18,7 +18,7 @@ pipeline
                     }
                     node
                     {
-                        ws("/tmp")
+                        ws("tmp")
                         powershell(returnStdout: true, script: 'docker run -d --name buildservice -v "/tmp:c:/source" -t msbuild15testplatform')
                         checkout scm 
                     }                    
