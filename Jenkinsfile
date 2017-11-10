@@ -7,7 +7,7 @@ pipeline
         {
             steps 
             {
-                powershell:script
+                script
                 {
                     Write-Output "PowerShell is mighty!"
                 }
