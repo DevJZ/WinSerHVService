@@ -1,6 +1,8 @@
-pipeline {
+pipeline 
+{
     agent none
-    stages {
+    stages 
+    {
         stage('Say Hello') 
         {
             steps 
@@ -9,5 +11,4 @@ pipeline {
             }
         }
     }
-  }
 }
