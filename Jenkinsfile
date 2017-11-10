@@ -10,10 +10,9 @@ pipeline
             {
                 step
                 {
-                    node
-                    {
-                        checkout scm
-                    }
+
+                    checkout scm
+                    
                 }
                 script
                 {
