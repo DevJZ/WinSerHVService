@@ -9,7 +9,7 @@ pipeline
             {
                 script
                 {
-                    Write-Output "PowerShell is mighty!"
+                    def out = powershell(returnStdout: false, script: 'Write-Output "PowerShell is mighty!"')
                 }
             }
         }
