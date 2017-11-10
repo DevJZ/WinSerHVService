@@ -7,7 +7,7 @@ pipeline
         {
             steps 
             {
-                powershell 'docker run --rm -d -t msbuild15testplatform'
+                powershell (returnStdout: true, script: 'docker run --rm -d -t msbuild15testplatform')
             }
         }
     }
