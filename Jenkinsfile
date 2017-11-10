@@ -1,11 +1,11 @@
 pipeline {
     agent none
     stages {
-        stage("build") 
+        stage('Say Hello') 
         {
             steps 
             {
-                checkout SCM  
+                powershell 'docker run --rm -d -t msbuild15testplatform'
             }
         }
     }
