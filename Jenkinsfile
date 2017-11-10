@@ -11,7 +11,8 @@ pipeline
                 {
                     node
                     {
-                        powershell(script: '$(pwd).Path')
+                        def out = powershell(returnStdout: true, script: '$(pwd).Path')
+                        println out
                     }
                 }
             }
