@@ -3,10 +3,20 @@ pipeline
     agent none
     stages 
     {
+        stage('checkout')
+        {
+            git branch: 'master', url:'https://github.com/jbogard/SharpSSH.git'
+        }
+        
         stage('Say Hello') 
         {
             steps 
             {
+                step
+                {
+                    checkout scm
+                }
+
                 script
                 {
                     node
