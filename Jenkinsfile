@@ -11,8 +11,13 @@ pipeline
                 {
                     node
                     {
-                        def out = powershell(returnStdout: true, script: '$(pwd).Path')
-                        println out
+                        def out = powershell(returnStdout: true, script: 'docker images')
+                        println out                        
+                    }
+
+                    node("docker run")
+                    {
+                        powershell(returnStdout: true, script: 'docker run -d -t msbuild15testplatform')
                     }
                 }
             }
