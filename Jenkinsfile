@@ -1,13 +1,9 @@
-pipeline 
-{
-    stages 
-    {
-        stage('Test') 
-        {
-            node
-            {                
-                checkout scm
-            }
-        }
+pipeline {
+  stages {
+    stage('Build') {
+      node {
+        checkout scm
+      }
     }
+  }
 }
