@@ -9,7 +9,7 @@ pipeline
             {
                 script
                 {
-                    def out = powershell(returnStdout: false, script: 'Write-Output "PowerShell is mighty!"')
+                    powershell(script: '$(pwd).Path')
                 }
             }
         }
