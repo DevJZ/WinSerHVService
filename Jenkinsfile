@@ -18,8 +18,8 @@ pipeline
                     }
                     node
                     {
-                        ws(dir: 'e:\tempworkspace')
-                        powershell(returnStdout: true, script: 'docker run -d --name buildservice -v "e:/tempworkspace:c:/source" -t msbuild15testplatform')
+                        ws("/tmp")
+                        powershell(returnStdout: true, script: 'docker run -d --name buildservice -v "/tmp:c:/source" -t msbuild15testplatform')
                         checkout scm 
                     }                    
                 }
