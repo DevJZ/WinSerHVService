@@ -12,13 +12,12 @@ pipeline
                     node
                     {
                         def out = powershell(returnStdout: true, script: 'docker images')
-                        println out                        
+                        println out
                     }
-
-                    node("docker run")
+                    node
                     {
                         powershell(returnStdout: true, script: 'docker run -d -t msbuild15testplatform')
-                    }
+                    }                    
                 }
             }
         }
