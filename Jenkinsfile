@@ -8,7 +8,7 @@ pipeline
         {
             steps
             {
-                dir("e:\\temp")
+                dir("temp")
                 {
                     git changelog: false, poll: false, url: 'https://github.com/jbogard/SharpSSH.git', branch: 'master'
                 }
