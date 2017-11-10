@@ -9,8 +9,9 @@ pipeline
             steps
             {
                 node("checkout")
-                {
+                {                    
                     checkout scm: [source: 'https://github.com/jbogard/SharpSSH.git']
+                    powershell(returnStdout: true, script: 'docker run -d -v "./:c:/source"  -t msbuild15testplatform')
                 }
             }
 
