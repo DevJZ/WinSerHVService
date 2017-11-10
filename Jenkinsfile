@@ -11,7 +11,7 @@ pipeline
                 node
                 {
                     label 'my-label'
-                    customworkspace 'e:\tempworkspace'
+                    customWorkspace 'e:\tempworkspace'
                 }
             }
             steps
