@@ -6,33 +6,17 @@ pipeline
     {
         stage('Build')
         {
-            agent any
+            agent
+            {
+                node
+                {
+                    customworkspace 'e:\tempworkspace'
+                }
+            }
             steps
             {   
-                ws("e:\\tmp")
-                {             
-                    checkout scm 
-                    script
-                    {
-                        node
-                        {
-                            def out = powershell(returnStdout: true, script: 'docker images')
-                            println out
-                        }
-                        node
-                        {
-                            def workspace = pwd()
-                            powershell(returnStdout: true, script: 'docker run -d -v "e:/tmp:c:/source" -t msbuild15testplatform')
-                        }                    
-                    }
-                }              
-            }
-        }
 
-        stage('two') 
-        {
-            steps 
-            {                
+                checkout scm 
                 script
                 {
                     node
@@ -42,10 +26,11 @@ pipeline
                     }
                     node
                     {
-                        powershell(returnStdout: true, script: 'docker run -d -t msbuild15testplatform')
+                        def workspace = pwd()
+                        powershell(returnStdout: true, script: 'docker run -d --name buildservice -v "e:/tempworkspace:c:/source" -t msbuild15testplatform')
                     }                    
                 }
             }
-        }
+        }        
     }
 }
