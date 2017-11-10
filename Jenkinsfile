@@ -9,9 +9,9 @@ pipeline
             {
                 step
                 {
-                    //checkout scm
+                    checkout scm
 
-                        git branch: 'master', url:'https://github.com/jbogard/SharpSSH.git'
+                        //git branch: 'master', url:'https://github.com/jbogard/SharpSSH.git'
                     
                 }
 
