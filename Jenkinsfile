@@ -8,11 +8,9 @@ pipeline
         {
             steps 
             {
-                step
+                dir("e:\\temp")
                 {
-
-                    checkout scm
-                    
+                    git changelog: false, poll: false, url: 'https://github.com/jbogard/SharpSSH.git', branch: 'master'
                 }
                 script
                 {
