@@ -7,7 +7,8 @@ pipeline
         {
             steps 
             {
-                powershell(returnStdout: true, script: 'Write-Output')
+                def out = powershell(returnStdout: true, script: 'Write-Output 'Hello, World!'')
+                println out
             }
         }
     }
