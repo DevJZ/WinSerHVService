@@ -6,18 +6,9 @@ pipeline
     {
         stage('Build')
         {
-            agent
-            {
-                node
-                {
-                    label 'my-label'
-                    customWorkspace 'e:\tempworkspace'
-                }
-            }
+            agent none
             steps
-            {   
-
-                checkout scm 
+            {                
                 script
                 {
                     node
@@ -27,8 +18,9 @@ pipeline
                     }
                     node
                     {
-                        def workspace = pwd()
+                        ws(dir: 'e:\tempworkspace')
                         powershell(returnStdout: true, script: 'docker run -d --name buildservice -v "e:/tempworkspace:c:/source" -t msbuild15testplatform')
+                        checkout scm 
                     }                    
                 }
             }
