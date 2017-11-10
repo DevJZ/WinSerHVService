@@ -8,11 +8,13 @@ pipeline
         {
             steps 
             {
-                node
+                step
                 {
-                    checkout scm
+                    node
+                    {
+                        checkout scm
+                    }
                 }
-
                 script
                 {
                     node
