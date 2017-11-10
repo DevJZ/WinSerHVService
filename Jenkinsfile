@@ -8,20 +8,23 @@ pipeline
         {
             agent any
             steps
-            {                
-                checkout scm 
-                script
-                {
-                    node
+            {   
+                ws("e:\tmp")
+                {             
+                    checkout scm 
+                    script
                     {
-                        def out = powershell(returnStdout: true, script: 'docker images')
-                        println out
+                        node
+                        {
+                            def out = powershell(returnStdout: true, script: 'docker images')
+                            println out
+                        }
+                        node
+                        {
+                            def workspace = pwd()
+                            powershell(returnStdout: true, script: 'docker run -d -v "e:/tmp:c:/source" -t msbuild15testplatform')
+                        }                    
                     }
-                    node
-                    {
-                        def workspace = pwd()
-                        powershell(returnStdout: true, script: 'docker run -d -v "$workspace:c:/source" -t msbuild15testplatform')
-                    }                    
                 }              
             }
         }
