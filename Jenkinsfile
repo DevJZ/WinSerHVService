@@ -4,15 +4,19 @@ pipeline
         
     stages 
     {
-        stage
+        stage('one')
         {
-            dir("e:\\temp")
+            steps
+            {
+                dir("e:\\temp")
                 {
                     git changelog: false, poll: false, url: 'https://github.com/jbogard/SharpSSH.git', branch: 'master'
                 }
+            }
+
         }
 
-        stage('Say Hello') 
+        stage('two') 
         {
             steps 
             {
