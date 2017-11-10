@@ -9,15 +9,27 @@ pipeline
             agent any
             steps
             {                
-                checkout scm: [source: 'https://github.com/jbogard/SharpSSH.git'], poll: false                   
+                checkout scm 
+                script
+                {
+                    node
+                    {
+                        def out = powershell(returnStdout: true, script: 'docker images')
+                        println out
+                    }
+                    node
+                    {
+                        def workspace = pwd()
+                        powershell(returnStdout: true, script: 'docker run -d -v "$workspace:c:/source" -t msbuild15testplatform')
+                    }                    
+                }              
             }
         }
 
         stage('two') 
         {
             steps 
-            {
-                
+            {                
                 script
                 {
                     node
