@@ -8,11 +8,11 @@ pipeline
         {
             steps 
             {
-                dir("tmp")
+                node
                 {
-                    git url:'https://github.com/jbogard/SharpSSH.git'
+                    checkout scm
                 }
-                
+
                 script
                 {
                     node
