@@ -8,9 +8,9 @@ pipeline
         {
             steps
             {
-                dir("temp")
+                node("checkout")
                 {
-                    git changelog: false, poll: false, url: 'https://github.com/jbogard/SharpSSH.git', branch: 'master'
+                    checkout scm: [source: 'https://github.com/jbogard/SharpSSH.git']
                 }
             }
 
