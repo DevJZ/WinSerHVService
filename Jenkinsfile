@@ -10,10 +10,9 @@ pipeline
                 step
                 {
                     //checkout scm
-                    node
-                    {
+
                         git branch: 'master', url:'https://github.com/jbogard/SharpSSH.git'
-                    }
+                    
                 }
 
                 script
