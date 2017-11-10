@@ -4,20 +4,13 @@ pipeline
         
     stages 
     {
-        stage('one')
+        stage('Build')
         {
+            agent any
             steps
-            {
-                node("checkout")
-                {
-                    dir('e:\tmp')
-                    {
-                        checkout scm: [source: 'https://github.com/jbogard/SharpSSH.git'], poll: false
-                    }
-                    
-                }
+            {                
+                checkout scm: [source: 'https://github.com/jbogard/SharpSSH.git'], poll: false                   
             }
-
         }
 
         stage('two') 
