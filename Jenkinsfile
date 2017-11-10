@@ -7,7 +7,7 @@ pipeline
         {
             steps 
             {
-                powershell(returnStdout: true, script: 'echo "Hello"')
+                powershell(returnStdout: true, script: 'Write-Output')
             }
         }
     }
