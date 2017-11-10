@@ -9,7 +9,7 @@ pipeline
             agent any
             steps
             {   
-                ws("e:\tmp")
+                ws("e:\\tmp")
                 {             
                     checkout scm 
                     script
