@@ -9,7 +9,7 @@ pipeline
             {
                 script
                 {
-                    powershell(script: '$(pwd).Path')
+                    node(powershell(script: '$(pwd).Path'))                    
                 }
             }
         }
