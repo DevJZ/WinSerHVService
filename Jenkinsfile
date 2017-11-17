@@ -17,7 +17,7 @@ pipeline {
           println powershell(returnStdout: true, script: 'docker exec service cmd /k msbuild.exe')
           println powershell(returnStdout: true, script: 'docker stop service')
           def commonVar = 'var'
-          println powershell(returnStdout: true, script: '${commonVar}')
+          println powershell(returnStdout: true, script: 'echo ${commonVar}')
         }
       }
     }
