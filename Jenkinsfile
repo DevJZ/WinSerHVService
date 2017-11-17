@@ -24,7 +24,7 @@ pipeline
                 script
                 {
                     powershell(returnStdout: false, script: 'docker run -d --name=service -t mymsbuild ')
-                    powershell(returnStdout: true, script: 'docker exec service cmd /k "msbuild.exe --version"')
+                    powershell(returnStdout: true, script: 'docker exec service cmd /k msbuild.exe')
                 }
             }
         }
