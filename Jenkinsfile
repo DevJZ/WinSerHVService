@@ -23,8 +23,9 @@ pipeline
 
                 script
                 {
-                    powershell(returnStdout: false, script: 'docker run -d --name=service -t mymsbuild ')
+                    powershell(returnStdout: false, script: 'docker run -d --rm --name=service -t mymsbuild ')
                     powershell(returnStdout: true, script: 'docker exec service cmd /k msbuild.exe')
+                    powershell(returnStdout: true, script: 'docker stop service')
                 }
             }
         }
