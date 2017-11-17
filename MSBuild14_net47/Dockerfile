@@ -8,5 +8,5 @@ RUN powershell Invoke-WebRequest -Uri "https://download.microsoft.com/download/9
     .\NDP471-DevPack-ENU.exe /q /norestart & \
     del .\NDP471-DevPack-ENU.exe
 
-ENV MSBUILD14_BIN   "C:\Program Files (x86)\MSBuild\14.0\bin"
-ENV Path %Path%;%MSBUILD14_BIN%
+RUN SETX /M MSBUILD14_BIN   "C:\Program Files (x86)\MSBuild\14.0\bin"
+RUN SETX /M Path "%Path%;%MSBUILD14_BIN%"
