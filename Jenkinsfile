@@ -4,26 +4,28 @@ pipeline
         
     stages 
     {
-        stage('Build')
+        stage('Construct Builder')
         {
-            agent none
             steps
             {                
                 script
                 {
-                    node
-                    {
-                        def out = powershell(returnStdout: true, script: 'docker images')
-                        println out
-                    }
-                    node
-                    {
-                        ws("tmp")
-                        powershell(returnStdout: true, script: 'docker run -d --name buildservice -v "/tmp:c:/source" -t msbuild15testplatform')
-                        checkout scm 
-                    }                    
+                    def out = powershell(returnStdout: true, script: 'if(( docker images -q mymsbuild ) -eq $null ) {docker build -f MSbuild14_net47 -t mymsbuild . } else {'mybuild image found'} ')
+                    println out
+                }
+            }            
+        }
+
+        stage('Build')
+        {
+            steps
+            {
+                script
+                {
+                    powershell(returnStdout: false, script: 'docker run -d --name=service -t mymsbuild ')
+                    powershell(returnStdout: true, script: 'docker exec service cmd /k "msbuild.exe --version"')
                 }
             }
-        }        
+        }
     }
 }
