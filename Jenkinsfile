@@ -10,7 +10,7 @@ pipeline
             {                
                 script
                 {
-                    def out = powershell(returnStdout: true, script: 'if(( docker images -q mymsbuild ) -eq $null ) {docker build -f MSbuild14_net47 -t mymsbuild . } else {'mybuild image found'} ')
+                    def out = powershell(returnStdout: true, script: 'if(( docker images -q mymsbuild ) -eq $null ) {docker build -f MSbuild14_net47 -t mymsbuild . } else {"mybuild image found"} ')
                     println out
                 }
             }            
