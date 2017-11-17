@@ -1,33 +1,24 @@
-pipeline 
-{
-    agent any
+pipeline {
+  agent any
+  stages {
+    stage('Construct Builder') {
+      steps {
+        script {
+          def out = powershell(returnStdout: true, script: 'if(( docker images -q mymsbuild ) -eq $null ) {docker build -f .\\MSbuild14_net47\\Dockerfile -t mymsbuild . } else {"mybuild image found"} ')
+          println out
+        }
         
-    stages 
-    {
-        stage('Construct Builder')
-        {
-            steps
-            {
-                script
-                {
-                    def out = powershell(returnStdout: true, script: 'if(( docker images -q mymsbuild ) -eq $null ) {docker build -f .\\MSbuild14_net47\\Dockerfile -t mymsbuild . } else {"mybuild image found"} ')
-                    println out
-                }
-            }            
-        }
-
-        stage('Build')
-        {
-            steps
-            {
-
-                script
-                {
-                    powershell(returnStdout: false, script: 'docker run -d --rm --name=service -t mymsbuild ')
-                    powershell(returnStdout: true, script: 'docker exec service cmd /k msbuild.exe')
-                    powershell(returnStdout: true, script: 'docker stop service')
-                }
-            }
-        }
+      }
     }
+    stage('Build') {
+      steps {
+        script {
+          powershell(returnStdout: false, script: 'docker run -d --rm --name=service -t mymsbuild ')
+          powershell(returnStdout: true, script: 'docker exec service cmd /k msbuild.exe')
+          powershell(returnStdout: true, script: 'docker stop service')
+        }
+        
+      }
+    }
+  }
 }
