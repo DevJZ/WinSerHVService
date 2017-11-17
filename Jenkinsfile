@@ -14,10 +14,11 @@ pipeline {
       steps {
         script {
           powershell(returnStdout: false, script: 'docker run -d --rm --name=service -t mymsbuild ')
-          powershell(returnStdout: true, script: 'docker exec service cmd /k msbuild.exe')
-          powershell(returnStdout: true, script: 'docker stop service')
+          println powershell(returnStdout: true, script: 'docker exec service cmd /k msbuild.exe')
+          println powershell(returnStdout: true, script: 'docker stop service')
+          def commonVar = 'var'
+          println powershell(returnStdout: true, script: '${commonVar}')
         }
-        
       }
     }
   }
