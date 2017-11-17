@@ -1,13 +1,13 @@
 pipeline 
 {
-    agent none
+    agent any
         
     stages 
     {
         stage('Construct Builder')
         {
             steps
-            {                
+            {
                 script
                 {
                     def out = powershell(returnStdout: true, script: 'if(( docker images -q mymsbuild ) -eq $null ) {docker build -f MSbuild14_net47 -t mymsbuild . } else {"mybuild image found"} ')
@@ -20,6 +20,7 @@ pipeline
         {
             steps
             {
+
                 script
                 {
                     powershell(returnStdout: false, script: 'docker run -d --name=service -t mymsbuild ')
