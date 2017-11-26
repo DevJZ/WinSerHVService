@@ -11,19 +11,15 @@ pipeline
 			}
 			steps 
 			{
-				// withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'mydtr_cre',
-				// 		usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) 
-				// {
-				// 	script
-				// 	{
-				// 		MY_DTRID = "${env.USERNAME}"
-				// 		MY_DTRPASSWORD = "${env.PASSWORD}"
-				// 	}
-				// }				
 				script
 				{
-					//powershell 'docker build -f ${PWD}\\buildertools\\basicbuilder\\Dockerfile -t dcdevjbz/msbuilder15.4.8.50001_base:wincore1709 ${PWD}\\buildertools\\basicbuilder'
-					powershell '${env:SAUCE_ACCESS_PSW} | docker login --username ${env:SAUCE_ACCESS_USR} --password-stdin'
+					// withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'mydtr_cre',
+					// 		usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) 
+					// {
+					// }
+
+					powershell 'docker build -f ${PWD}\\buildertools\\basicbuilder\\Dockerfile -t dcdevjbz/msbuilder15.4.8.50001_base:wincore1709 ${PWD}\\buildertools\\basicbuilder'
+					powershell '${env:SAUCE_ACCESS_PSW} | docker login --username ${env:SAUCE_ACCESS_USR} --password-stdin; docker push dcdevjbz/msbuilder15.4.8.50001_base:wincore1709'
 				}
 			}
 		}
