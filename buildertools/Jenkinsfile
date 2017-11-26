@@ -18,8 +18,9 @@ pipeline
 					// 		usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) 
 					// {
 					// }
-					powershell 'if(( docker images -q ${env:IMAGE_NAME}) -eq $null ) { (docker build -f ${PWD}\\buildertools\\basicbuilder\\Dockerfile -t ${env:IMAGE_NAME} ${PWD}\\buildertools\\basicbuilder); (${env:SAUCE_ACCESS_PSW} | docker login --username ${env:SAUCE_ACCESS_USR} --password-stdin); (docker push ${env:IMAGE_NAME}) } 
-								else {"found ${env:IMAGE_NAME}"}'
+					powershell 'if(( docker images -q ${env:IMAGE_NAME}) -eq $null ) `
+					{ (docker build -f ${PWD}\\buildertools\\basicbuilder\\Dockerfile -t ${env:IMAGE_NAME} ${PWD}\\buildertools\\basicbuilder); (${env:SAUCE_ACCESS_PSW} | docker login --username ${env:SAUCE_ACCESS_USR} --password-stdin); (docker push ${env:IMAGE_NAME}) } `
+					else {"found ${env:IMAGE_NAME}"}'
 				}
 			}
 		}
