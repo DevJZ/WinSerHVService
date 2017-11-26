@@ -1,0 +1,21 @@
+pipeline
+{
+	agent any
+	stages 
+	{
+		stage('Builder') 
+		{
+			steps 
+			{
+				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dtr_dcdevjbz',
+						usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) 
+				{
+					script
+					{
+						powershell '${env:PASSWORD} | docker login --username ${env:USERNAME} --password-stdin'
+					}
+				}
+			}
+		}
+	}
+}
