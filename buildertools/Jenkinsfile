@@ -8,7 +8,6 @@ pipeline
 			environment
 			{
 				SAUCE_ACCESS = credentials('mydtr_cre')
-				IMAGE_NAME = "dcdevjbz/msbuild15:ver15.4.8.50001_wincore1709"
 			}
 			steps 
 			{
@@ -18,9 +17,9 @@ pipeline
 					// 		usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) 
 					// {
 					// }
-					powershell 'if(( docker images -q ${env:IMAGE_NAME}) -eq $null ) `
-					{ (docker build -f ${PWD}\\buildertools\\basicbuilder\\Dockerfile -t ${env:IMAGE_NAME} ${PWD}\\buildertools\\basicbuilder); (${env:SAUCE_ACCESS_PSW} | docker login --username ${env:SAUCE_ACCESS_USR} --password-stdin); (docker push ${env:IMAGE_NAME}) } `
-					else {"found ${env:IMAGE_NAME}"}'
+					powershell 'if(( docker images -q dcdevjbz/msbuild15:ver15.4.8.50001_wincore1709) -eq $null ) 
+					{ (docker build -f ${PWD}\\buildertools\\basicbuilder\\Dockerfile -t dcdevjbz/msbuild15:ver15.4.8.50001_wincore1709 ${PWD}\\buildertools\\basicbuilder); (${env:SAUCE_ACCESS_PSW} | docker login --username ${env:SAUCE_ACCESS_USR} --password-stdin); (docker push dcdevjbz/msbuild15:ver15.4.8.50001_wincore1709) } `
+					else {"found dcdevjbz/msbuild15:ver15.4.8.50001_wincore1709"}'
 				}
 			}
 		}
