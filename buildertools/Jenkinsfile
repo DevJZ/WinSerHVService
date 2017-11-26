@@ -22,7 +22,7 @@ pipeline
 				script
 				{
 					//powershell 'docker build -f ${PWD}\\buildertools\\basicbuilder\\Dockerfile -t dcdevjbz/msbuilder15.4.8.50001_base:wincore1709 ${PWD}\\buildertools\\basicbuilder'
-					powershell '${env:MY_DTRPASSWORD} | docker login --username ${env:MYDTRID} --password-stdin'
+					powershell '${env:MY_DTRPASSWORD} | docker login --username ${env:MY_DTRID} --password-stdin'
 				}
 			}
 		}
