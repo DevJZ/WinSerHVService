@@ -1,20 +1,26 @@
 pipeline
 {
 	agent any
+	environment
+	{
+		MY_DTRID=''
+		MY_DTRPASSWORD=''	
+	}
 	stages 
 	{
 		stage('Builder') 
 		{
 			steps 
 			{
-				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dtr_dcdevjbz',
-						usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD']]) 
+				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'mydtr_cre',
+						usernameVariable: ${MYDTRID}, passwordVariable: ${MY_DTRPASSWORD}]]) 
+				{					
+				}
+
+				script
 				{
-					script
-					{
-						powershell 'docker build -f ${PWD}\\buildertools\\basicbuilder\\Dockerfile -t dcdevjbz/msbuilder15.4.8.50001_base:wincore1709 ${PWD}\\buildertools\\basicbuilder'
-						powershell '${env:PASSWORD} | docker login --username ${env:USERNAME} --password-stdin ; docker push dcdevjbz/msbuilder15.4.8.50001_base:wincore1709'
-					}
+					//powershell 'docker build -f ${PWD}\\buildertools\\basicbuilder\\Dockerfile -t dcdevjbz/msbuilder15.4.8.50001_base:wincore1709 ${PWD}\\buildertools\\basicbuilder'
+					powershell '${env:MY_DTRPASSWORD} | docker login --username ${env:MYDTRID} --password-stdin'
 				}
 			}
 		}
