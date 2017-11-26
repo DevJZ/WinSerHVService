@@ -13,7 +13,7 @@ pipeline
 			steps 
 			{
 				withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'mydtr_cre',
-						usernameVariable: ${MYDTRID}, passwordVariable: ${MY_DTRPASSWORD}]]) 
+						usernameVariable: ${MY_DTRID}, passwordVariable: ${MY_DTRPASSWORD}]]) 
 				{					
 				}
 
